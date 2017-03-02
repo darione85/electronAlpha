@@ -18,5 +18,9 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^1.4.1"
+  },
+  "dependencies": {
+    "sequelize": "^3.30.2",
+    "sqlite3": "^3.1.8"
   }
 }
