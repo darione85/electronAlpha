@@ -8,8 +8,8 @@ alphaApp.config(function($routeProvider) {
     $routeProvider.when('/', {
         template: '<main></main>'
     })
-        .when('/daticoncessione',{
-            template:'<daticoncessione></daticoncessione>'
+        .when('/addressbook',{
+            template:'<addressbook></addressbook>'
         })
         .when('/daticoncessione/:id',{
             template:'<daticoncessione-edit></daticoncessione-edit>',

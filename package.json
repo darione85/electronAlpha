@@ -20,6 +20,7 @@
     "electron": "^1.4.1"
   },
   "dependencies": {
+    "node-mysql": "^0.4.2",
     "sequelize": "^3.30.2",
     "sqlite3": "^3.1.8"
   }
