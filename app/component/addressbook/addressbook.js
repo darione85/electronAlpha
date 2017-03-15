@@ -3,23 +3,23 @@
  */
 (function(){
 
-    alphaApp.component('navmenu',{
+    alphaApp.component('addressbook',{
 
-        templateUrl:'app/component/menu/menuComponent.html',
+        templateUrl:'app/component/addressbook/addressbook.html',
         bindings: {
             onSelected: '&'
         },
         controller: function($location){
             var ctrl = this;
 
-            console.log("menuComponent" );
+            console.log("addressbook component" );
 
             ctrl.isAuthenticated = false;
-            ctrl.selectedMenu = "daticoncessione";
+            ctrl.selectedMenu = "addressbook";
 
             ctrl.loginCallback= function () {
                 ctrl.isAuthenticated = true;
-                $location.path( "/daticoncessione" );
+                $location.path( "/addressbook" );
 
             }
 

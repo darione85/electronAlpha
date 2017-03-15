@@ -11,17 +11,17 @@ alphaApp.config(function($routeProvider) {
         .when('/addressbook',{
             template:'<addressbook></addressbook>'
         })
-        .when('/daticoncessione/:id',{
-            template:'<daticoncessione-edit></daticoncessione-edit>',
+        .when('/addressbook/:id',{
+            template:'<addressbook-edit></addressbook-edit>',
             resolve: {
-                id: ['$route','apiService', function ($route, apiService) {
+                id: ['$route','apiService', function ($route) {
                     var routeParams = $route.current.params;
 
                     return routeParams.id;
                 }]
             }
         })
-        .when('/recapiti',{
-            template:'<recapiti></recapiti>'
+        .when('/fatture',{
+            template:'<fatture></fatture>'
         });
 });

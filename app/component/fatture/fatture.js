@@ -3,23 +3,23 @@
  */
 (function(){
 
-    alphaApp.component('navmenu',{
+    alphaApp.component('fatture',{
 
-        templateUrl:'app/component/menu/menuComponent.html',
+        templateUrl:'app/component/fatture/fatture.html',
         bindings: {
             onSelected: '&'
         },
         controller: function($location){
             var ctrl = this;
 
-            console.log("menuComponent" );
+            console.log("fatture component" );
 
             ctrl.isAuthenticated = false;
-            ctrl.selectedMenu = "daticoncessione";
+            ctrl.selectedMenu = "fatture";
 
             ctrl.loginCallback= function () {
                 ctrl.isAuthenticated = true;
-                $location.path( "/daticoncessione" );
+                $location.path( "/fatture" );
 
             }
 
