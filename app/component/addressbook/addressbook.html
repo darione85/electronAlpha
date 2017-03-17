@@ -19,7 +19,7 @@
                                 <i class="fa fa-comments fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">26</div>
+                                <div class="huge">{{$ctrl.count}}</div>
                                 <div>Contact number</div>
                             </div>
                         </div>
@@ -34,6 +34,84 @@
                 </div>
             </div>
         </div>
+
+        <!--<div ui-grid="$ctrl.gridOptions" class="myGrid"></div>-->
+
+        <!--input-->
+        <div class="row">
+            <div class="col-lg-6">
+                <form role="form">
+                    <div class="form-group">
+                        <label>filter by name</label>
+                        <input ng-model="$ctrl.filterByName" class="form-control" placeholder="Enter text">
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6">
+                <form role="form">
+                    <div class="form-group">
+                        <label>filter by surname</label>
+                        <input ng-model="$ctrl.filterBySurname" class="form-control" placeholder="Enter text">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--end input-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Striped Rows
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>title</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Phone</th>
+                                    <th>View/Edit</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="contact in $ctrl.addressBook | filter:$ctrl.filterByName|filter:$ctrl.filterBySurname">
+                                    <td>{{contact.title}}</td>
+                                    <td>{{contact.name}}</td>
+                                    <td>{{contact.surname}}</td>
+                                    <td>{{contact.phone}}</td>
+                                    <td><a ng-href="#!/addressbook/{{contact._id}}">View</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+
+        </div>
+
+
+        <!-- /.table-responsive -->
+        <!--<div class="well">-->
+            <!--<h4>DataTables Usage Information</h4>-->
+            <!--<p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.</p>-->
+            <!--<a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a>-->
+        <!--</div>-->
+    </div>
+    <!-- /.panel-body -->
+</div>
+<!-- /.panel -->
+</div>
+<!-- /.col-lg-12 -->
+</div>
+
         <!-- /.row -->
 
 

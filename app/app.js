@@ -1,4 +1,4 @@
-var alphaApp = angular.module('alpha',['ui.bootstrap', 'ngRoute', /**'ngTable',*/ 'ui.grid']);
+var alphaApp = angular.module('alpha',['ui.bootstrap', 'ngRoute', /**'ngTable',*/ 'ui.grid','xeditable']);
 
 alphaApp.factory('_', function() {
     return window._; // assumes underscore has already been loaded on the page
@@ -14,10 +14,11 @@ alphaApp.config(function($routeProvider) {
         .when('/addressbook/:id',{
             template:'<addressbook-edit></addressbook-edit>',
             resolve: {
-                id: ['$route','apiService', function ($route) {
+                id: ['$route', function ($route) {
                     var routeParams = $route.current.params;
-
+                    console.log("-->addressBookEdit:"+routeParams.id);
                     return routeParams.id;
+
                 }]
             }
         })
