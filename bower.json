@@ -47,7 +47,8 @@
     "angular-ui-select": "^0.19.6",
     "ui-bootstrap": "^2.5.0",
     "angular-bootstrap": "^2.5.0",
-    "angular-xeditable": "^0.6.0"
+    "angular-xeditable": "^0.6.0",
+    "moment": "^2.18.0"
   },
   "resolutions": {
     "font-awesome": "~4.6.3"

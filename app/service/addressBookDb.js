@@ -20,6 +20,11 @@
             get:function (obj,callback) {
 
                 db.find(obj,callback);
+            },
+
+            update:function (obj,objUpdated,callback) {
+
+                db.update(obj, objUpdated,callback);
             }
 
         }

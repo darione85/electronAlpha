@@ -23,21 +23,127 @@
                         <br>
                         <p class="lead">Cognome :  <a href="#" editable-text="$ctrl.contact.surname">{{ $ctrl.contact.surname|| "empty" }}</a></p>
                         <br>
-                        <p class="lead">piva :  <a href="#" editable-text="$ctrl.contact.surname">{{ $ctrl.contact.piva|| "empty" }}</a></p>
+                        <p class="lead">piva :  <a href="#" editable-text="$ctrl.contact.piva">{{ $ctrl.contact.piva|| "empty" }}</a></p>
                         <br>
-                        <p class="lead">CF :  <a href="#" editable-text="$ctrl.contact.surname">{{ $ctrl.contact.cf|| "empty" }}</a></p>
+                        <p class="lead">CF :  <a href="#" editable-text="$ctrl.contact.cf">{{ $ctrl.contact.cf|| "empty" }}</a></p>
                         <br>
-                        <p class="lead">Nascita :  <a href="#" editable-text="$ctrl.contact.surname">{{ $ctrl.contact.birthDay|| "empty" }}</a></p>
+                        <p class="lead">Nascita :  <a href="#" editable-combodate="$ctrl.contact.birthDay" >{{ ($ctrl.contact.birthDay | date:"dd/MM/yyyy") || "empty" }}</a></p>
                         <br>
-                        <p class="lead">skype :  <a href="#" editable-text="$ctrl.contact.surname">{{ $ctrl.contact.skype|| "empty" }}</a></p>
+                        <p class="lead">skype :  <a href="#" editable-text="$ctrl.contact.skype">{{ $ctrl.contact.skype|| "empty" }}</a></p>
                         <br>
-                        <p class="lead">website:  <a href="#" editable-text="$ctrl.contact.surname">{{ $ctrl.contact.website|| "empty" }}</a></p>
+                        <p class="lead">website:  <a href="#" editable-text="$ctrl.contact.website">{{ $ctrl.contact.website|| "empty" }}</a></p>
                         <br>
 
-                        <h4>Alignment Helpers</h4>
-                        <p class="text-left">Left aligned text.</p>
-                        <p class="text-center">Center aligned text.</p>
-                        <p class="text-right">Right aligned text.</p>
+                        <!--address-->
+                        <h4>Address</h4>
+                        <span ng-show="$ctrl.contact.address.length > 0" class="lead" ng-repeat="(key,address) in $ctrl.contact.address track by $index">
+                            <address>
+                                <button type="button" class="btn btn-warning btn-circle" ng-click="$ctrl.deleteAddress(key)"><i class="fa fa-times"></i></button>
+                                <br><abbr title="address">Address:</abbr><a href="#" editable-text="address.address">{{ address.address|| "empty" }}</a>
+                                <br><abbr title="state">State:</abbr><a href="#" editable-text="address.state">{{ address.state|| "empty" }}</a>
+                                <br><abbr title="city">City:</abbr><a href="#" editable-text="address.city">{{ address.city|| "empty" }}</a>
+                                <br><abbr title="city">Provincia:</abbr><a href="#" editable-text="address.province">{{ address.province|| "empty" }}</a>
+                                <br><abbr title="PostCode">PostCode</abbr><a href="#" editable-text="address.postcode">{{ address.postcode|| "empty" }}</a>
+                            </address>
+                        </span>
+                        <button class="" ng-click="$ctrl.addAddressModel()"><i class="fa fa-2x fa-plus-circle btn-success"></i></button>
+
+
+                        <hò2>PHONE</hò2>
+                        <ul ng-show="$ctrl.contact.number.length > 0" class="lead" ng-repeat="(key,number) in $ctrl.contact.number track by $index">
+                            <li>
+                                <strong>Type:</strong>
+                                <a href="#" editable-text="number.type">{{ number.type|| "empty" }}</a>
+                                <br>
+                                <strong>Number:</strong>
+                                <a href="#" editable-text="number.value">{{ number.value|| "empty" }}</a>
+                                <br>
+                                <button type="button" class="btn btn-warning btn-circle" ng-click="$ctrl.deleteNumber(key)"><i class="fa fa-times"></i></button>
+                            </li>
+                        </ul>
+                        <p class="text-right">
+                            <button type="button" class="btn btn-success btn-circle" ng-click="$ctrl.addNumberModel()"><i class="fa fa-plus-circle"></i></button>
+                        </p>
+
+
+
+                        <!--phone-->
+
+                        <h2>PHONE</h2>
+                        <ul ng-show="$ctrl.contact.number.length > 0" class="lead" ng-repeat="(key,number) in $ctrl.contact.number track by $index">
+                            <li>
+                                <strong>Type:</strong>
+                                <a href="#" editable-text="number.type">{{ number.type|| "empty" }}</a>
+                                <br>
+                                <strong>Number:</strong>
+                                <a href="#" editable-text="number.value">{{ number.value|| "empty" }}</a>
+                                <br>
+                                <button type="button" class="btn btn-warning btn-circle" ng-click="$ctrl.deleteNumber(key)"><i class="fa fa-times"></i></button>
+                            </li>
+                        </ul>
+                        <p class="text-right">
+                            <button type="button" class="btn btn-success btn-circle" ng-click="$ctrl.addNumberModel()"><i class="fa fa-plus-circle"></i></button>
+                        </p>
+
+                        <!--<h2>PHONE</h2>-->
+                        <!--<address ng-show="$ctrl.contact.number.length > 0" class="lead" ng-repeat="(key,number) in $ctrl.contact.number track by $index">-->
+                            <!--<strong><button type="button" class="btn btn-warning btn-circle" ng-click="$ctrl.deleteNumber(key)"><i class="fa fa-times"></i></button>Type:</strong>-->
+                            <!--<a href="#" editable-text="number.type">{{ number.type|| "empty" }}</a>-->
+                            <!--<br>-->
+                            <!--<strong>Number:</strong>-->
+                            <!--<a href="#" editable-text="number.value">{{ number.value|| "empty" }}</a>-->
+                            <!--<br>-->
+
+                        <!--</address>-->
+                        <!--<button class="" ng-click="$ctrl.addNumberModel()"><i class="fa fa-2x fa-plus-circle btn-success"></i></button>-->
+
+
+                        <!--<h2>PHONE</h2>-->
+                        <!--<span ng-show="$ctrl.contact.number.length > 0" class="lead" ng-repeat="(key,number) in $ctrl.contact.number track by $index">-->
+                            <!--<button type="button" class="btn btn-warning btn-circle" ng-click="$ctrl.deleteNumber(key)"><i class="fa fa-times"></i></button>-->
+                            <!--<p class="lead">Type:  <a href="#" editable-text="number.type">{{ number.type|| "empty" }}</a></p>-->
+                            <!--<br>-->
+                            <!--<p class="lead">Number:  <a href="#" editable-text="number.value">{{ number.value|| "empty" }}</a></p>-->
+                            <!--<br>-->
+                        <!--</span>-->
+                        <!--<button class="" ng-click="$ctrl.addNumberModel()"><i class="fa fa-2x fa-plus-circle btn-success"></i></button>-->
+
+                        <!--mail-->
+                        <!--<h2>MAIL</h2>-->
+                        <!--<span ng-show="$ctrl.contact.mail.length > 0" class="lead" ng-repeat="(key,mail) in $ctrl.contact.mail track by $index">-->
+                            <!--<button type="button" class="btn btn-warning btn-circle" ng-click="$ctrl.deleteMail(key)"><i class="fa fa-times"></i></button>-->
+                            <!--<p class="lead">Type:  <a href="#" editable-text="number.type">{{ mail.type|| "empty" }}</a></p>-->
+
+                            <!--<p class="lead">Number:  <a href="#" editable-text="number.value">{{ mail.value|| "empty" }}</a></p>-->
+                            <!--<br>-->
+                        <!--</span>-->
+                        <!--<button class="" ng-click="$ctrl.addMailModel()"><i class="fa fa-2x fa-plus-circle btn-success"></i></button>-->
+
+
+                        <h2>MAIL</h2>
+                        <ul ng-show="$ctrl.contact.mail.length > 0" class="lead" ng-repeat="(key,mail) in $ctrl.contact.mail track by $index">
+                            <li>
+                                <strong>Type:</strong>
+                                <a href="#" editable-text="number.type">{{ mail.type|| "empty" }}</a>
+                                <br>
+                                <strong>Mail:</strong>
+                                <a href="#" editable-text="number.value">{{ mail.value|| "empty" }}</a>
+                                <br>
+                                <button type="button" class="btn btn-warning btn-circle" ng-click="$ctrl.deleteMail(key)"><i class="fa fa-times"></i></button>
+                            </li>
+                        </ul>
+                        <p class="text-right">
+                            <button type="button" class="btn btn-success btn-circle" ng-click="$ctrl.addMailModel()"><i class="fa fa-plus-circle"></i></button>
+                        </p>
+
+
+
+                        <button type="button" class="btn btn-success btn-circle" ng-click="$ctrl.save()">Save</button>
+
+                        <!--<h4>Alignment Helpers</h4>-->
+                        <!--<p class="text-left">Left aligned text.</p>-->
+                        <!--<p class="text-center">Center aligned text.</p>-->
+                        <!--<p class="text-right">Right aligned text.</p>-->
                     </div>
                     <!-- /.panel-body -->
                 </div>

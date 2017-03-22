@@ -1,8 +1,10 @@
-var alphaApp = angular.module('alpha',['ui.bootstrap', 'ngRoute', /**'ngTable',*/ 'ui.grid','xeditable']);
+var alphaApp = angular.module('alpha',[ 'ngRoute', /**'ngTable',*/ 'ui.grid','xeditable', 'ui.bootstrap']);
 
 alphaApp.factory('_', function() {
     return window._; // assumes underscore has already been loaded on the page
 });
+
+
 
 alphaApp.config(function($routeProvider) {
     $routeProvider.when('/', {
