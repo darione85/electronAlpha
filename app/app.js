@@ -24,7 +24,7 @@ alphaApp.config(function($routeProvider) {
                 }]
             }
         })
-        .when('/fatture',{
-            template:'<fatture></fatture>'
+        .when('/invoices',{
+            template:'<invoices></invoices>'
         });
 });

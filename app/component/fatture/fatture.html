@@ -1,5 +1,5 @@
 <div id="wrapper">
-    <navmenu></navmenu>
+    <navmenu selectedMenu = "invoices"></navmenu>
     <navbar></navbar>
 
     <div id="page-wrapper">
@@ -32,6 +32,45 @@
                         </div>
                     </a>
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{$ctrl.contact.title}} {{$ctrl.contact.name}} {{$ctrl.contact.surname}}
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    Actions
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li><a > Aggiungi Anno</a></li>
+                                    <li><a >Finish Editing</a></li>
+                                    <li><a href="#">Another action</a>
+                                    </li>
+                                    <li><a href="#">Something else here</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Separated link</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+
+                        <!--<h4>Alignment Helpers</h4>-->
+                        <!--<p class="text-left">Left aligned text.</p>-->
+                        <!--<p class="text-center">Center aligned text.</p>-->
+                        <!--<p class="text-right">Right aligned text.</p>-->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
             </div>
         </div>
         <!-- /.row -->

@@ -7,15 +7,30 @@
 
         templateUrl:'app/component/menu/menuComponent.html',
         bindings: {
-            onSelected: '&'
+            onSelected: '&',
+            selectedMenu:'<'
         },
-        controller: function($location){
+        controller: function($location, $route){
             var ctrl = this;
+
+            ctrl.$onInit = function () {
+                console.log(ctrl.selectedMenu)
+
+            }
 
             console.log("menuComponent" );
 
             ctrl.isAuthenticated = false;
-            ctrl.selectedMenu = "daticoncessione";
+
+            $onChanges = function (changesObj) {
+                if (changesObj.selectedMenu) {
+                    console.log(changesObj.selectedMenu)
+                    ctrl.selectedMenu =changesObj.selectedMenu
+                }
+
+            }
+
+
 
             ctrl.loginCallback= function () {
                 ctrl.isAuthenticated = true;
@@ -26,6 +41,8 @@
             ctrl.logoutCallback= function () {
                 ctrl.isAuthenticated = false;
             }
+
+
 
 
         }

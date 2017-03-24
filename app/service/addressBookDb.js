@@ -24,7 +24,7 @@
 
             update:function (obj,objUpdated,callback) {
 
-                db.update(obj, objUpdated,callback);
+                db.update(obj, objUpdated , {},callback);
             }
 
         }

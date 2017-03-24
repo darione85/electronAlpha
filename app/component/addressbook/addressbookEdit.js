@@ -9,14 +9,19 @@
         bindings: {
             onSelected: '&'
         },
-        controller: function($route, addressBookService, $timeout){
+        controller: function($route, addressBookService, $timeout, $uibModal){
+
             var ctrl = this;
+
+
 
             ctrl.routeParams = $route.current.params;
             ctrl.contactId = ctrl.routeParams.id;
             ctrl.contact = {};
 
             ctrl.opened = {};
+
+            ctrl.enableEdit = false;
 
             ctrl.open = function($event, elementOpened) {
                 $event.preventDefault();
@@ -87,6 +92,8 @@
                     ctrl.contact.mail.splice(key, 1);
                 },0)
             }
+
+
 
             var doc = {
                 title: "avv",
@@ -168,3 +175,5 @@
         }
     });
 })();
+
+

@@ -3,23 +3,29 @@
  */
 (function(){
 
-    alphaApp.component('fatture',{
+    alphaApp.component('invoices',{
 
         templateUrl:'app/component/fatture/fatture.html',
         bindings: {
             onSelected: '&'
         },
-        controller: function($location){
+        controller: function($location, $timeout){
             var ctrl = this;
 
             console.log("fatture component" );
 
             ctrl.isAuthenticated = false;
-            ctrl.selectedMenu = "fatture";
+
+            $timeout(function () {
+                ctrl.selectedMenu = "invoices";
+            });
+
+
+
 
             ctrl.loginCallback= function () {
                 ctrl.isAuthenticated = true;
-                $location.path( "/fatture" );
+                $location.path( "/invoices" );
 
             }
 

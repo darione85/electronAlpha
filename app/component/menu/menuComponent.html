@@ -21,13 +21,13 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#!/fatture"><i class="fa fa-table fa-fw"></i> Fatture</a>
-                <ul class="nav nav-second-level">
+                <a href="#!/invoices"><i class="fa fa-table fa-fw"></i> Fatture - {{$ctrl.selectedMenu}}</a>
+                <ul class="nav nav-second-level " ng-class="{'collpase in':($ctrl.selectedMenu == 'invoices'),'collpase':($ctrl.selectedMenu != 'invoices')}">
                     <li>
-                        <a href="#!/fatture"> anno</a>
+                        <a href="#!/invoices"> anno</a>
                     </li>
                     <li>
-                        <a href="#!/fatture">anno2</a>
+                        <a href="#!/invoices">anno2</a>
                     </li>
                 </ul>
             </li>
