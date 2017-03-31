@@ -13,12 +13,23 @@
         controller: function($location, $route){
             var ctrl = this;
 
-            ctrl.$onInit = function () {
-                console.log(ctrl.selectedMenu)
+            this.$onInit = function () {
+
+                // console.log(this.selectedMenu)
 
             }
 
-            console.log("menuComponent" );
+            this.$onChanges = function ($event) {
+                // console.log($event.selectedMenu.currentValue);
+                // console.log($event.selectedMenu.previousValue);
+                // console.log($event);
+
+            }
+
+
+            // console.log(ctrl.selectedMenu)
+
+            // console.log("menuComponent" );
 
             ctrl.isAuthenticated = false;
 

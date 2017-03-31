@@ -30,13 +30,32 @@ alphaApp.config(function($routeProvider) {
         .when('/invoices/:year',{
             template:'<invoices-year></invoices-year>',
             resolve: {
-                id: ['$route', function ($route) {
+                year: ['$route', function ($route) {
                     var routeParams = $route.current.params;
                     console.log("-->invoiceYear:"+routeParams.year);
                     return routeParams.year;
 
                 }]
             }
-    });
+        })
+        .when('/invoices/:year/:id',{
+            template:'<invoices-edit></invoices-edit>',
+            resolve: {
+                id: ['$route', function ($route) {
+                    var routeParams = $route.current.params;
+                    console.log("-->invoiceYear:"+routeParams.id);
+
+                    return routeParams.id;
+
+                }],
+                year:['$route', function ($route) {
+                    var routeParams = $route.current.params;
+                    console.log("-->invoiceYear:"+routeParams.year);
+
+                    return routeParams.year;
+
+                }]
+            }
+        });
 
 });

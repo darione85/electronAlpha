@@ -17,7 +17,7 @@
                 console.log(err);
                 var InvoiceDict =[ 2015,2016];
             }
-            console.log(obj);
+            // console.log(obj);
             // per ogni anno creato a livello superiore creo un db
             InvoiceDict.forEach(function(year){
 
@@ -88,6 +88,9 @@
             update:function (year, obj,objUpdated,callback) {
 
                 InvoiceDbArray[year].update(obj, objUpdated,callback);
+            },
+            newInvoice:function () {
+                return
             }
 
         }

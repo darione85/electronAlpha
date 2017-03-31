@@ -1,5 +1,5 @@
 <div id="wrapper">
-    <navmenu selectedMenu = "invoices"></navmenu>
+    <navmenu selectedMenu="$ctrl.selectedMenu"></navmenu>
     <navbar></navbar>
 
     <div id="page-wrapper">
@@ -10,36 +10,37 @@
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-comments fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">26</div>
-                                <div>Contact number</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <!--<div class="row">-->
+            <!--<div class="col-lg-3 col-md-6">-->
+                <!--<div class="panel panel-primary">-->
+                    <!--<div class="panel-heading">-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-xs-3">-->
+                                <!--<i class="fa fa-comments fa-5x"></i>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-9 text-right">-->
+                                <!--<div class="huge">26</div>-->
+                                <!--<div>Contact number</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<a href="">-->
+                        <!--<div class="panel-footer">-->
+                            <!--<span class="pull-left">View Details</span>-->
+                            <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>-->
+                            <!--<div class="clearfix"></div>-->
+                        <!--</div>-->
+                    <!--</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        {{$ctrl.contact.title}} {{$ctrl.contact.name}} {{$ctrl.contact.surname}}
+                        Anni Fatturazione
+
                         <div class="pull-right">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -67,23 +68,23 @@
 
                         <div class="row">
 
-                            <div ng-repeat="(key,year) in $ctrl.invoiceConfig.year track by $index" class="col-lg-3 col-md-6">
+                            <div ng-repeat="year in $ctrl.invoiceConfig.year track by $index" class="col-lg-3 col-md-3 col-xs-6">
                                 <div class="panel panel-green">
                                     <div class="panel-heading">
                                         <div class="row">
                                             <div class="col-xs-3">
                                                 <i class="fa fa-tasks fa-5x"></i>
-                                                <span ng-show="$ctrl.deleteEnabled" ng-click="$ctrl.delete(year)" class="pull-left"><i class="fa fa-times-circle"></i></span>
+                                                <span ng-show="$ctrl.deleteEnabled" ng-click="$ctrl.deleteYear(year)" class="pull-left"><i class="fa fa-times-circle"></i></span>
                                             </div>
                                             <div class="col-xs-9 text-right">
                                                 <div class="huge">{{year}}</div>
-                                                <div>{{year}}</div>
+                                                <div>Fatture : {{year}}</div>
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="#">
+                                    <a ng-href="#!/invoices/{{year}}">
                                         <div class="panel-footer">
-                                            <span ng-href="#!/invoices/{{year}}" class="pull-left">View Details</span>
+                                            <span  class="pull-left">View Details</span>
                                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                             <div class="clearfix"></div>
                                         </div>
@@ -101,13 +102,148 @@
                         <!--<button type="button" class="btn btn-primary btn-lg btn-block" >Save</button>-->
                         <!--<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="$ctrl.insert()">insert</button>-->
                     </div>
+
+
                     <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->
             </div>
         </div>
-        <!-- /.row -->
 
+        <!--TAX-->
+
+
+
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Tasse
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    Actions
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li><a ng-click="$ctrl.addTax()"> Aggiungi Tassa</a></li>
+                                    <li class="divider"></li>
+                                    <li><a ng-click="$ctrl.enableDelete()">Abilita Modifica</a></li>
+                                    <li class="divider"></li>
+                                    <li><a ng-click="$ctrl.save()">Salva </a></li>
+                                    <!--<li><a href="#">Another action</a>-->
+                                    <!--</li>-->
+                                    <!--<li><a href="#">Something else here</a>-->
+                                    <!--</li>-->
+                                    <!--<li class="divider"></li>-->
+                                    <!--<li><a href="#">Separated link</a>-->
+                                    <!--</li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+
+                        <div class="col-lg-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Tabella Tasse
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+
+                                                <th>Nome Tassa</th>
+                                                <th>Descrizione</th>
+                                                <th>Tipo</th>
+                                                <th>Valore</th>
+                                                <th>In Vigore</th>
+                                                <th ng-show="$ctrl.deleteEnabled">Delete</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-show="$ctrl.invoiceConfig.tax.length > 0" class="lead" ng-repeat="(key,tax) in $ctrl.invoiceConfig.tax track by $index">
+                                                <td><a href="#" editable-text="tax.name">{{ tax.name|| "empty" }}</a></td>
+                                                <td><a href="#" editable-text="tax.description">{{ tax.description|| "empty" }}</a></td>
+                                                <td><a href="#" editable-text="tax.type">{{ tax.type|| "empty" }}</a></td>
+                                                <td><a href="#" editable-text="tax.value">{{ tax.value|| "empty" }}</a></td>
+                                                <td><a href="#" editable-checkbox="tax.enabled" e-title="Abilitata">{{ tax.enabled && "Abilitata!" || "Non Abilitata" }}</a></td>
+                                                <td ng-show="$ctrl.deleteEnabled"><button ng-show="$ctrl.deleteEnabled" type="button" class="btn btn-warning btn-circle" ng-click="$ctrl.deleteTax(tax)"><i class="fa fa-times"></i></button></td>
+                                            </tr>
+                                            <tr>
+                                                <td ng-show="$ctrl.deleteEnabled"><button ng-show="$ctrl.deleteEnabled" type="button" class="btn btn-enabled btn-circle" ng-click="$ctrl.addTax()"><i class="fa fa-plus-circle"></i></button></td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+
+
+                            <!--<span ng-show="$ctrl.invoiceConfig.tax.length > 0" class="lead" ng-repeat="(key,tax) in $ctrl.invoiceConfig.tax track by $index">-->
+                            <!--<address>-->
+                                <!--<strong> Tassa: {{key+1}}</strong>-->
+                                <!--<br><abbr title="name">Nome Tassa:</abbr><a href="#" editable-text="tax.name">{{ tax.name|| "empty" }}</a>-->
+                                <!--<br><abbr title="description">Descrizione:</abbr><a href="#" editable-text="tax.description">{{ tax.description|| "empty" }}</a>-->
+                                <!--<br><abbr title="type">Tipo:</abbr><a href="#" editable-text="tax.type">{{ tax.type|| "empty" }}</a>-->
+                                <!--<br><abbr title="value">Valore:</abbr><a href="#" editable-text="tax.value">{{ value|| "empty" }}</a>-->
+                                <!--<br><button ng-show="$ctrl.deleteEnabled" type="button" class="btn btn-warning btn-circle" ng-click="$ctrl.deleteTax(tax)"><i class="fa fa-times"></i></button>-->
+                            <!--</address>-->
+                        <!--</span>-->
+
+
+                            <!--<div ng-repeat="tax in $ctrl.invoiceConfig.tax track by $index" class="col-lg-3 col-md-6">-->
+                                <!--<div class="panel panel-yellow">-->
+                                    <!--<div class="panel-heading">-->
+                                        <!--<div class="row">-->
+                                            <!--<div class="col-xs-3">-->
+                                                <!--<i class="fa fa-shopping-cart fa-5x"></i>-->
+                                                <!--<span ng-show="$ctrl.deleteEnabled" ng-click="$ctrl.deleteTax(tax)" class="pull-left"><i class="fa fa-times-circle"></i></span>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-xs-9 text-right">-->
+                                                <!--<div class="huge">{{tax.name}}</div>-->
+                                                <!--<div>{{tax.description}}</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<a href="#">-->
+                                        <!--<div class="panel-footer">-->
+                                            <!--<span  class="pull-left">{{tax.value}}-{{tax.type}}</span>-->
+
+                                            <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>-->
+                                            <!--<div class="clearfix"></div>-->
+                                        <!--</div>-->
+                                    <!--</a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+
+                        <!--<h4>Alignment Helpers</h4>-->
+                        <!--<p class="text-left">Left aligned text.</p>-->
+                        <!--<p class="text-center">Center aligned text.</p>-->
+                        <!--<p class="text-right">Right aligned text.</p>-->
+
+                        <!--<button type="button" class="btn btn-primary btn-lg btn-block" >Save</button>-->
+                        <!--<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="$ctrl.insert()">insert</button>-->
+                    </div>
+
+
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+        </div>
 
     </div>
     <!-- /#page-wrapper -->
