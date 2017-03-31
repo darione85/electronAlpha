@@ -26,5 +26,17 @@ alphaApp.config(function($routeProvider) {
         })
         .when('/invoices',{
             template:'<invoices></invoices>'
-        });
+        })
+        .when('/invoices/:year',{
+            template:'<invoices-year></invoices-year>',
+            resolve: {
+                id: ['$route', function ($route) {
+                    var routeParams = $route.current.params;
+                    console.log("-->invoiceYear:"+routeParams.year);
+                    return routeParams.year;
+
+                }]
+            }
+    });
+
 });

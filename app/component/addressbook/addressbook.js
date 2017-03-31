@@ -20,7 +20,7 @@
             ctrl.filterBySurname = "";
 
 
-            var doc = {
+            var exampleDoc = {
                 title: "avv",
                 name: 'Roberta',
                 surname: 'Curcio',
