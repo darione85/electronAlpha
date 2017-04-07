@@ -1,4 +1,4 @@
-var alphaApp = angular.module('alpha',[ 'ngRoute', /**'ngTable',*/ 'ui.grid','xeditable', 'ui.bootstrap']);
+var alphaApp = angular.module('alpha',[ 'ngRoute', /**'ngTable',*/ 'ui.grid','xeditable', 'ui.bootstrap','checklist-model']);
 
 alphaApp.factory('_', function() {
     return window._; // assumes underscore has already been loaded on the page
@@ -59,3 +59,19 @@ alphaApp.config(function($routeProvider) {
         });
 
 });
+
+alphaApp.run([
+    '$rootScope',
+    function($rootScope) {
+        // see what's going on when the route tries to change
+        $rootScope.$on('$routeChangeStart', function(event, next, current) {
+            // next is an object that is the route that we are starting to go to
+            // current is an object that is the route where we are currently
+
+            var currentPath =(current)? current.originalPath:"-";
+            var nextPath = (next)?next.originalPath:"-";
+
+            console.log('Starting to leave %s to go to %s', currentPath, nextPath);
+        });
+    }
+]);

@@ -54,7 +54,13 @@
                                     <td><a href="#" editable-text="voice.name">{{ voice.name|| "empty" }}</a></td>
                                     <td><a href="#" editable-text="voice.description">{{ voice.description|| "empty" }}</a></td>
                                     <td><a href="#" editable-text="voice.value">{{ voice.value|| "empty" }}</a></td>
-                                    <td><a href="#" editable-checklist="voice.tax" e-ng-options="s._id as s.name for s in $ctrl.invoiceConfig.tax">$ctrl.taxStatus(</a></td>
+                                    <!--<td><a href="#" editable-checklist="voice.tax" e-ng-options="s._id as s.name for s in $ctrl.invoiceConfig.tax">{{$ctrl.taxStatus()}}</a></td>-->
+                                    <td>
+                                        <label ng-repeat="tax in $ctrl.invoiceConfig.tax">
+                                            <input type="checkbox" checklist-model="voice.tax" checklist-value="tax"> {{tax.name}}
+                                        </label>
+                                    </td>
+
                                 </tr>
                                 <tr>
                                     <td ><button type="button" class="btn btn-enabled btn-circle" ng-click="$ctrl.addVoice()"><i class="fa fa-plus-circle"></i></button></td>

@@ -41,14 +41,20 @@
     }
 
 
+    // message to main for open window
+    var {ipcRenderer, remote} = require('electron');
+    //var main = remote.require("./main.js");
+    // ipcRenderer.send('asynchronous-message', {value:"key"});
 
-
+    ipcRenderer.send('print-invoice', {value:"key"});
 
 
 
     alphaApp.service('invoiceConfigService', ['$http', '$window', '$rootScope','$timeout', function ($http, $window, $rootScope,$timeout) {
 
         console.log("invoiceConfigService loaded");
+
+
 
         return{
 
@@ -64,6 +70,11 @@
             update:function (obj,objUpdated,callback) {
 
                 db.update(obj, objUpdated,callback);
+            },
+
+            print :function () {
+                // message to main for open window
+                ipcRenderer.send('print-invoice', {value:"key"});
             }
 
         }

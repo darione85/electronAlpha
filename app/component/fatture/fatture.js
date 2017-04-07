@@ -1,7 +1,16 @@
 /**
  * Created by dario on 16/01/17.
  */
+
+
+
+
+
+
+
 (function(){
+
+
 
     alphaApp.component('invoices',{
 
@@ -10,11 +19,10 @@
             onSelected: '&'
         },
         controller: function($location, $timeout, invoiceConfigService){
+
             var $ctrl = this;
 
             console.log("fatture component" );
-
-
 
             $ctrl.deleteEnabled = false;
 
@@ -69,6 +77,7 @@
             $ctrl.addTax= function () {
 
                 $ctrl.invoiceConfig.tax.push({
+                    type:"invoice_tax",
                     name:"Tax Name",
                     description:"percentage",
                     type:"%",
@@ -76,6 +85,8 @@
                 })
 
             }
+
+
 
             $ctrl.deleteTax= function (taxToDelete) {
 
@@ -267,14 +278,16 @@
             }
 
             $ctrl.taxStatus = function(voice) {
-                var voice = [];
+                var selected = [];
 
-                angular.forEach($scope.statuses, function(s) {
-                    if ($scope.user.status.indexOf(s.value) >= 0) {
-                        selected.push(s.text);
-                    }
-                });
-                return selected.length ? selected.join(', ') : 'Not set';
+                return $ctrl.voice.tax;
+
+                // angular.forEach($scope.statuses, function(s) {
+                //     if ($scope.user.status.indexOf(s.value) >= 0) {
+                //         selected.push(s.text);
+                //     }
+                // });
+                // return selected.length ? selected.join(', ') : 'Not set';
             };
 
 
