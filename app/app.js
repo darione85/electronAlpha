@@ -56,7 +56,26 @@ alphaApp.config(function($routeProvider) {
 
                 }]
             }
-        });
+        })
+    .when('/invoices/print/:year/:id',{
+        template:'<invoices-print></invoices-print>',
+        resolve: {
+            id: ['$route', function ($route) {
+                var routeParams = $route.current.params;
+                console.log("-->invoiceYear:"+routeParams.id);
+
+                return routeParams.id;
+
+            }],
+            year:['$route', function ($route) {
+                var routeParams = $route.current.params;
+                console.log("-->invoiceYear:"+routeParams.year);
+
+                return routeParams.year;
+
+            }]
+        }
+    });
 
 });
 

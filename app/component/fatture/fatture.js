@@ -175,8 +175,6 @@
 
 
 
-
-
             $ctrl.save= function () {
                 $ctrl.invoiceConfigService.update({_id:$ctrl.invoiceConfig._id },$ctrl.invoiceConfig,function (err, config) {
                     if(err == null){
@@ -227,8 +225,11 @@
             console.log("fatture by Year component" );
 
             $ctrl.routeParams = $route.current.params;
-            $ctrl.year= $ctrl.routeParams.year;
+
+            $ctrl.year= $ctrl.routeParams.year.replace(/[^\/\d]/g,'');
             $ctrl.id= $ctrl.routeParams.id;
+
+            console.log($ctrl.year);
 
             $ctrl.invoiceConfigService = invoiceConfigService;
 
@@ -253,12 +254,12 @@
 
             $ctrl.save= function () {
 
-                if($ctrl.invoice._id != null){
+                if($ctrl.invoice._id ){
                     $ctrl.invoiceService.insert($ctrl.year,{_id:$ctrl.id},function (err, doc) {
                         $ctrl.invoice = doc;
                     });
                 }else{
-                    $ctrl.invoiceService.update({_id:$ctrl.invoice._id },$ctrl.invoiceConfig,function (err, config) {
+                    $ctrl.invoiceService.update($ctrl.year,{_id:$ctrl.invoice._id },$ctrl.invoiceConfig,function (err, config) {
                         if(err == null){
                             $timeout(function () {
                                 console.log(config);
@@ -290,14 +291,117 @@
                 // return selected.length ? selected.join(', ') : 'Not set';
             };
 
-
             $ctrl.isAuthenticated = false;
 
             $timeout(function () {
                 $ctrl.selectedMenu = "invoices";
             });
 
+            $ctrl.loginCallback= function () {
+                $ctrl.isAuthenticated = true;
+                $location.path( "/invoices" );
 
+            }
+
+            $ctrl.logoutCallback= function () {
+                $ctrl.isAuthenticated = false;
+            }
+
+
+        }
+    });
+})();
+
+
+(function(){
+
+    alphaApp.component('invoicesPrint',{
+
+        templateUrl:'app/component/fatture/fatturaPrint.html',
+        bindings: {
+            onSelected: '&'
+        },
+        controller: function($route,$location, $timeout, invoiceConfigService, invoiceService){
+            var $ctrl = this;
+
+            console.log("fatture by Year component" );
+
+            $ctrl.routeParams = $route.current.params;
+
+            $ctrl.year= $ctrl.routeParams.year.replace(/[^\/\d]/g,'');
+            $ctrl.id= $ctrl.routeParams.id;
+
+            console.log($ctrl.year);
+
+            $ctrl.invoiceConfigService = invoiceConfigService;
+
+            $ctrl.invoiceService = invoiceService;
+
+            $ctrl.invoiceConfigService.get({},function (err, doc) {
+                $ctrl.invoiceConfig = doc[0];
+
+                console.log($ctrl.invoiceConfig.tax)
+            });
+
+            if($ctrl.id == "new"){
+                console.log("nuova fattura");
+                $ctrl.invoice = {}
+                $ctrl.invoice.voices=[];
+            }else{
+                $ctrl.invoiceService.get($ctrl.year,{_id:$ctrl.id},function (err, doc) {
+                    $ctrl.invoice = doc;
+                });
+            }
+
+
+            $ctrl.save= function () {
+
+                if($ctrl.invoice._id ){
+                    $ctrl.invoiceService.insert($ctrl.year,{_id:$ctrl.id},function (err, doc) {
+                        $ctrl.invoice = doc;
+                    });
+                }else{
+                    $ctrl.invoiceService.update($ctrl.year,{_id:$ctrl.invoice._id },$ctrl.invoiceConfig,function (err, config) {
+                        if(err == null){
+                            $timeout(function () {
+                                console.log(config);
+                            },0)
+                        }else console.log(err);
+                    })
+                }
+            }
+
+            $ctrl.addVoice = function () {
+                $ctrl.invoice.voices.push({
+                    name:"name",
+                    description:"descr",
+                    value: 10,
+                    tax: []
+                })
+            }
+
+            $ctrl.taxStatus = function(voice) {
+                var selected = [];
+
+                return $ctrl.voice.tax;
+
+                // angular.forEach($scope.statuses, function(s) {
+                //     if ($scope.user.status.indexOf(s.value) >= 0) {
+                //         selected.push(s.text);
+                //     }
+                // });
+                // return selected.length ? selected.join(', ') : 'Not set';
+            };
+
+            $ctrl.print = function () {
+                invoiceConfigService.print();
+            }
+
+            $ctrl.isAuthenticated = false;
+
+            $timeout(function () {
+                $ctrl.selectedMenu = "invoices";
+            });
 
             $ctrl.loginCallback= function () {
                 $ctrl.isAuthenticated = true;

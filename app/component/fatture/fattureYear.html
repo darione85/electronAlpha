@@ -96,6 +96,16 @@
 
                         <!--<a ng-href="#!/invoices/'+{{$ctrl.year}}+'/new"><button type="button" class="btn btn-primary btn-lg btn-block" ng-href="#!/invoices/new">Nuova</button></a>-->
                         <!--<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="$ctrl.insert()">insert</button>-->
+
+                        <table>
+                            <tr>
+                                <th>numero</th>
+                                <th>totale</th>
+                            </tr>
+                            <tr ng-repeat="invoice in $ctrl.invoicesByYear">
+                                <td>{{invoice.number}} </td>
+                            </tr>
+                        </table>
                     </div>
                     <!-- /.panel-body -->
                 </div>

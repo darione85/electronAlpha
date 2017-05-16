@@ -46,7 +46,7 @@
     //var main = remote.require("./main.js");
     // ipcRenderer.send('asynchronous-message', {value:"key"});
 
-    ipcRenderer.send('print-invoice', {value:"key"});
+    //ipcRenderer.send('print-invoice', {value:"key"});
 
 
 
@@ -97,7 +97,9 @@
             },
 
             update:function (year, obj,objUpdated,callback) {
-
+                console.log(InvoiceDbArray);
+                console.log(year);
+                console.log(InvoiceDbArray[year]);
                 InvoiceDbArray[year].update(obj, objUpdated,callback);
             },
             newInvoice:function () {

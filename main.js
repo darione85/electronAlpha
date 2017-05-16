@@ -92,7 +92,8 @@ function loadInvoiceTemplate () {
 
 ipcMain.on('print-invoice', function(event, arg) {
     console.log(arg);  // prints "ping"
-    loadInvoiceTemplate();
+    mainWindow.webContents.print()
+    //loadInvoiceTemplate();
     //event.sender.send('asynchronous-reply', 'pong')
 })
 
