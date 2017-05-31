@@ -1,4 +1,4 @@
-var alphaApp = angular.module('alpha',[ 'ngRoute', /**'ngTable',*/ 'ui.grid','xeditable', 'ui.bootstrap','checklist-model']);
+var alphaApp = angular.module('alpha',[ 'ngRoute', /**'ngTable',*/ 'ui.grid','xeditable', 'ui.bootstrap','checklist-model', 'ui.select']);
 
 alphaApp.factory('_', function() {
     return window._; // assumes underscore has already been loaded on the page

@@ -219,7 +219,7 @@
         bindings: {
             onSelected: '&'
         },
-        controller: function($route,$location, $timeout, invoiceConfigService, invoiceService){
+        controller: function($route,$location, $timeout, invoiceConfigService, invoiceService, addressBookService){
             var $ctrl = this;
 
             console.log("fatture by Year component" );
@@ -229,11 +229,25 @@
             $ctrl.year= $ctrl.routeParams.year.replace(/[^\/\d]/g,'');
             $ctrl.id= $ctrl.routeParams.id;
 
+            $ctrl.recipient ={};
+            $ctrl.address = {}
+
             console.log($ctrl.year);
 
             $ctrl.invoiceConfigService = invoiceConfigService;
 
             $ctrl.invoiceService = invoiceService;
+
+            $ctrl.addressBookService = addressBookService;
+
+            $ctrl.addressBookService.get({},function (err,obj) {
+                console.log(obj[0]);
+                $ctrl.recipients = obj;
+                $timeout(function () {
+                    $ctrl.recipient = obj[0];
+                })
+
+            })
 
             $ctrl.invoiceConfigService.get({},function (err, doc) {
                 $ctrl.invoiceConfig = doc[0];

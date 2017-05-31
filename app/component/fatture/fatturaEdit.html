@@ -37,15 +37,88 @@
                     </div>
                     <div class="panel-body">
 
+                        <h4>Select Recipient</h4>
+                        <div >
+                            <form data-editable-form name="uiSelectForm">
+                                <div editable-ui-select="$ctrl.recipient" data-e-form="uiSelectForm" data-e-name="state" name="state" theme="bootstrap" data-e-ng-model="$ctrl.recipient" data-e-style="min-width:300px;">
+                                    {{$ctrl.recipient.name+ ' ' +$ctrl.recipient.surname}}
+                                    <editable-ui-select-match placeholder="name">
+                                        {{$select.selected.name+ ' ' +$select.selected.surname}}
+                                    </editable-ui-select-match>
+                                    <editable-ui-select-choices repeat="recipient in $ctrl.recipients | filter: $select.search track by $index">
+                                        {{recipient.name + ' ' +recipient.surname}}
+                                    </editable-ui-select-choices>
+                                </div>
+                                <br/>
+                                <div class="buttons">
+                                    <!-- button to show form -->
+                                    <button type="button" class="btn btn-default" ng-click="uiSelectForm.$show()" ng-show="!uiSelectForm.$visible">
+                                        Edit
+                                    </button>
+                                    <!-- buttons to submit / cancel form -->
+                                    <span ng-show="uiSelectForm.$visible">
+                                    <br/>
+                                    <button type="submit" class="btn btn-primary" ng-disabled="uiSelectForm.$waiting">
+                                      Save
+                                    </button>
+                                    <button type="button" class="btn btn-default" ng-disabled="uiSelectForm.$waiting" ng-click="uiSelectForm.$cancel()">
+                                      Cancel
+                                    </button>
+                                </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <h4>Select Address</h4>
+                    <a  href="#" editable-select="$ctrl.address" e-ng-options="s.address as s.address for s in $ctrl.recipient.address">
+                        {{$ctrl.address}}
+                    </a>
+
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    Actions
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li><a > STAMPA TODO</a></li>
+                                    <li><a >Finish Editing</a></li>
+                                    <li><a href="#">Another action</a>
+                                    </li>
+                                    <li><a href="#">Something else here</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Separated link</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+
                         <div class="table-responsive">
+
                             <table class="table">
                                 <thead>
                                 <tr>
 
                                     <th>Nome</th>
-                                    <th>descrizione</th>
-                                    <th>importo</th>
-                                    <th >tasse</th>
+                                    <th>Descrizione</th>
+                                    <th>Importo</th>
+                                    <th >Tasse</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -76,6 +149,10 @@
                         <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="$ctrl.save()">Save</button>
                         <a href="#!/invoices/print/2015/12"><button type="button" class="btn btn-primary btn-lg btn-block" >Print</button></a>
 
+
+
+
+
                         <!--<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="$ctrl.insert()">insert</button>-->
                     </div>
                     <!-- /.panel-body -->
@@ -91,3 +168,5 @@
 
 </div>
 <!-- /#wrapper -->
+
+
